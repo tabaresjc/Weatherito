@@ -16,108 +16,50 @@
 		};
 	}
 
-	function ApiBaseService($state, $http, $q, $log, AuthorizeService) {
+	function ApiBaseService($state, $http, $q, $log) {
 
-		function Login() {
-			var defer = $q.defer(),
-				user = AuthorizeService.getUser();
-
-			if(!user) {
-				var httpParams = {
-					method: 'GET',
-					url: appConfig.api.url + 'users/login',
-					withCredentials: true
-				};
-
-				$http(httpParams)
-					.then(function(response) {
-							$log.info(httpParams.method, httpParams.url, {
-								response: response
-							});
-
-							user = response.data.data;
-							AuthorizeService.setUser(user);
-
-							if(AuthorizeService.isAuthorized()) {
-								defer.resolve(user);
-							} else {
-								defer.reject(new ApiBaseServiceError('ERROR_ACCESS_DENIED'), response);
-							}
-						},
-						function(response) {
-							$log.error(httpParams.method, httpParams.url, {
-								response: response
-							});
-
-							if(response.status === 403) {
-								defer.reject(new ApiBaseServiceError('ERROR_ACCESS_DENIED', response));
-							} else {
-								defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
-							}
-						});
-			} else {
-				user = AuthorizeService.getUser();
-				defer.resolve(user);
-			}
-
-			return defer.promise;
-		}
-
-		function Get(method, url, params, data) {
+		function Get(url, params, data) {
 			var defer = $q.defer();
 
-			Login().then(function() {
-				if(!AuthorizeService.isAuthorized()) {
-					defer.reject(new ApiBaseServiceError('ERROR_ACCESS_DENIED'));
-				}
+			var httpParams = {
+				method: 'GET',
+				url: url,
+				params: params,
+				data: data
+			};
 
-				var httpParams = {
-					method: method,
-					url: appConfig.api.url + url,
+			function onSucess(response) {
+				$log.info(httpParams.method, httpParams.url, {
 					params: params,
-					data: data,
-					withCredentials: true
-				};
+					data: httpParams.data,
+					response: response.data
+				});
 
-				$http(httpParams)
-					.then(function(response) {
-							$log.info(httpParams.method, httpParams.url, {
-								params: params,
-								data: httpParams.data,
-								response: response.data
-							});
+				defer.resolve(response.data);
+			}
 
-							if(response.status) {
-								defer.resolve(response.data.data);
-							} else {
-								defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
-							}
-						},
-						function(response) {
+			function onError(response) {
+				$log.error(httpParams.method, httpParams.url, {
+					params: params,
+					data: httpParams.data,
+					response: response
+				});
 
-							$log.error(httpParams.method, httpParams.url, {
-								params: params,
-								data: httpParams.data,
-								response: response
-							});
+				defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
+			}
 
-							defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
-						});
-
-			}, function(response) {
-				defer.reject(response);
-			});
+			$http(httpParams).then(onSucess, onError);
 
 			return defer.promise;
 		}
 
 		return {
 			Get: Get,
-			Login: Login
+			ApiBaseServiceError: ApiBaseServiceError
 		};
 	}
 
-	ApiBaseService.$inject = ['$state', '$http', '$q', '$log', 'AuthorizeService'];
+	ApiBaseService.$inject = ['$state', '$http', '$q', '$log'];
 
 	angular.module(appConfig.appName)
 		.factory('ApiBaseService', ApiBaseService);

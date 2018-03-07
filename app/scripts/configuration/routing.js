@@ -8,11 +8,11 @@
 	 */
 	function configuration($urlRouterProvider) {
 
-		appConfig.defaultEntryPoint = '/' + appConfig.mode;
-		appConfig.defaultState = 'main.' + appConfig.mode;
+		appConfig.defaultEntryPoint = '/';
+		appConfig.defaultState = 'main.welcome';
 
 		// choose the default entry point of the app
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise(appConfig.defaultEntryPoint);
 	}
 
 	configuration.$inject = ['$urlRouterProvider'];
@@ -26,9 +26,6 @@
 
 		// inject the browser id
 		$rootScope.$browserId = UtilsService.getBrowserId();
-
-		// inject fund type
-		$rootScope.$fundType = appConfig.api.fundType;
 
 		// taken from ui-router module.
 		var rejectType = {

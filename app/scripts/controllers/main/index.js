@@ -6,20 +6,31 @@
 	/*
 	 * controller for top page of retail site
 	 */
-	function controller($scope) {
+	function controller($scope, weatherData, forecastData, geoData) {
+
 		// models
 		angular.extend($scope, {
+			weatherData: weatherData,
+			geoData: geoData,
+			forecastData: forecastData
 		});
 
 		// methods
-		angular.extend($scope, {
-		});
+		angular.extend($scope, {});
 	}
 
-	controller.$inject = ['$scope'];
+	controller.$inject = ['$scope', 'weatherData', 'forecastData', 'geoData'];
 
 	controller.resolve = {
-
+		geoData: ['GeoLocationService', function(GeoLocationService) {
+			return GeoLocationService();
+		}],
+		weatherData: ['WeatherService', 'geoData', function(WeatherService, geoData) {
+			return WeatherService.weather(geoData);
+		}],
+		forecastData: ['WeatherService', 'geoData', function(WeatherService, geoData) {
+			return WeatherService.forecast(geoData);
+		}]
 	};
 
 	/*

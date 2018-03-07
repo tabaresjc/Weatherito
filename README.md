@@ -24,14 +24,8 @@ $ gulp -v
 
 ### Installing
 1. Clone this repository `$ git clone <path to repository>` and `$ cd` into it
-2. run `$ npm install`
-```bash
-# this should install every dependency described in package.json
-$ npm install
+2. run `$ npm run install`
 
-# this will install every dependency described in bower.json
-$ bower install
-```
 ### Configuration
 
 To setup the environment in development mode save the file `resources/config-sample.json` as `resources/config.dev.json` and change the relevant values.
