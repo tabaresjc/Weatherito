@@ -1,0 +1,7 @@
+// Replace any glyphicon by its counterpart at fontawesome
+.glyphicon
+{
+    .fa-icon();
+    &.glyphicon-chevron-left:before { content: @fa-var-chevron-left; }
+    &.glyphicon-chevron-right:before { content: @fa-var-chevron-right; }
+}

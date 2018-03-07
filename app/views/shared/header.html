@@ -1,0 +1,35 @@
+<nav id="header" class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavBarMenu" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	      	</button>
+			<a class="navbar-brand img" href="/">
+				<img alt="{{displayName}}" src="/images/logo.svg">
+			</a>
+
+			<a class="navbar-brand" href="/" ng-bind-html="displayName">
+			</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div id="NavBarMenu" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left"></ul>
+			<ul class="nav navbar-nav navbar-right navbar-lang hidden-xs">
+				<li href="#" ng-class="{active: lang==='en'}">
+					<a ng-click="changeLanguage('en')">
+						<img src="/images/languages/en.svg" width="25" height="25">
+					</a>
+				</li>
+				<li href="#" ng-class="{active: lang==='es'}">
+					<a ng-click="changeLanguage('es')">
+						<img src="/images/languages/es.svg" width="25" height="25">
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

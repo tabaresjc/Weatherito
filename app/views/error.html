@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
+		<div class="alert alert-info" role="alert">
+			<h2 class="title">
+				<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+				<span ng-bind-html="info.title | translate"></span>
+			</h2>
+			<p class="subtitle text-center" ng-bind-html="info.subtitle | translate" ng-if="info.subtitle"></p>
+			<div class="well message-content" ng-if="info.contactServiceDesk">
+				<p class="text-center">
+					Please contact <a href="mailto:ServiceDesk@nikkoam.com?Subject=Ask for access to [Japan Retail Summary]">Service Desk</a> for access.
+					<br/>
+					Once you've confirmed access to this page, you may click the following button to return to the application.
+				</p>
+			</div>
+			<div class="actions text-center">
+				<a type="button" class="btn btn-default" ng-click="returnPage()">
+					<i class="fa fa-home" aria-hidden="true"></i>
+					<span ng-bind-html="'home_page' | translate"></span>
+				</a>
+			</div>
+			<div class="debug-panel" ng-if="info.debug">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default" heading="Details" ng-if="info.detail">
+						<pre>{{ info.detail | json }}</pre>
+					</div>
+					<div uib-accordion-group class="panel-default" heading="Response" ng-if="info.response">
+						<pre>{{ info.response | json }}</pre>
+    				</div>
+					<div uib-accordion-group class="panel-default" heading="Config" ng-if="info.config">
+						<pre>{{ info.config | json }}</pre>
+    				</div>
+				</uib-accordion>
+			</div>
+		</div>
+	</div>
+</div>

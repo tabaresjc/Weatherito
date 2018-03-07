@@ -1,0 +1,6 @@
+{
+	"app_debug": "1",
+	"app_name": "test",
+	"api_url": "/api/",
+	"display_name": "Weatherito [Test]"
+}

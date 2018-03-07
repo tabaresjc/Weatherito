@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="{{app_name}}" ng-controller="MainCtrl as main" lang="\{{ main.language }}">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	    <title>{{display_name}}</title>
+		<meta name="description" content="">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=kPxz77rbM4">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=kPxz77rbM4">
+		<link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png?v=kPxz77rbM4">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=kPxz77rbM4">
+		<link rel="manifest" href="/favicons/site.webmanifest?v=kPxz77rbM4">
+		<link rel="shortcut icon" href="/favicons/favicon.ico?v=kPxz77rbM4">
+		<meta name="apple-mobile-web-app-title" content="Weatherito">
+		<meta name="application-name" content="Weatherito">
+		<meta name="msapplication-TileColor" content="#2d89ef">
+		<meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png?v=kPxz77rbM4">
+		<meta name="msapplication-config" content="/favicons/browserconfig.xml?v=kPxz77rbM4">
+		<meta name="theme-color" content="#ffffff">
+
+		<link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Condensed" rel="stylesheet" as="style">
+
+		<!-- build:css(app) /styles/loader.css -->
+		<link href="/styles/loader.css" rel="stylesheet" />
+		<!-- endbuild -->
+
+		<!-- build:css(app) /styles/vendors.css -->
+		<link href="/styles/vendors.css" rel="stylesheet" />
+		<!-- endbuild -->
+
+		<!-- build:css(app) /styles/main.css -->
+		<link href="/styles/main.css" rel="stylesheet" />
+		<!-- endbuild -->
+
+		<!-- build:css(.) /styles/plugins.css -->
+		<!-- bower:css -->
+		<!-- endbower -->
+		<!-- endbuild -->
+	</head>
+	<body class="\{{ $state.current.name }} \{{ $browserId }}">
+		<div id="loader-wrapper" loader-widget>
+			<div id="loader">
+				<p class="loader-text">Loading...</p>
+				<div class="loader"></div>
+			</div>
+		</div>
+		<!-- page wrapper -->
+		<section id="main-wrapper" ui-view="main-wrapper">
+			<!-- header -->
+			<div ui-view="header"></div>
+
+			<!-- notification messages  -->
+			<message-comp></message-comp>
+
+			<!-- content wraper -->
+			<section id="main-content" class="container-fluid">
+				<div ui-view="content"></div>
+			</section>
+
+			<!-- footer -->
+			<div id="footer" ng-include="'views/shared/footer.html'"></div>
+		</section>
+
+		<!-- build:js(.) /scripts/vendor.js -->
+		<!-- bower:js -->
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<!-- build:js(app) /scripts/main.js -->
+		<!-- inject-scripts:js -->
+  		<!-- endinject -->
+		<!-- endbuild -->
+
+		<!-- build:js(app) /scripts/templates.js -->
+		<script src="scripts/templates.js"></script>
+		<!-- endbuild -->
+	</body>
+</html>

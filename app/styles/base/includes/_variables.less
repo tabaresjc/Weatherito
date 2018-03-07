@@ -1,0 +1,54 @@
+//********************************************************************************************
+// sizes
+@size-xs: ~"(max-width: @{screen-xs-max})";
+@size-sm: ~"(min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
+@size-md: ~"(min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
+@size-lg: ~"(min-width: @{screen-lg-min})";
+
+// For tablets and mobiles
+@size-xs-sm: ~"(max-width: @{screen-sm-max})";
+// For tablets and medium size viewports
+@size-sm-md: ~"(min-width: @{screen-sm-min}) and (max-width: @{screen-md-max})";
+// from tablets upward
+@size-sm-lg: ~"(min-width: @{screen-sm-min})";
+// For medium size viewports to large
+@size-md-lg: ~"(min-width: @{screen-md-min})";
+
+//********************************************************************************************
+// colors
+@background-color: #333;
+@light-color: #eee;
+@dark-color: #111;
+@purple: #ee86f7;
+@red: #d9534f;
+@green: #449d44;
+@blue: #1f62b2;
+
+//********************************************************************************************
+// mixins
+.border-radius (@radius:5px) {
+	border-radius: @radius;
+}
+// Official Font Family
+.app-font
+{
+	font-family: 'Open Sans', sans-serif;
+}
+.app-font-condensed
+{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.default-link {
+	color: @gray-light;
+	outline: 0;
+	.app-font-condensed;
+	&:focus,
+	&:hover {
+		text-decoration: none;
+		color: @gray-lighter;
+	}
+	&.active {
+		color: #fff;
+	}
+}

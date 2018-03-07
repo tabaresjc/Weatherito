@@ -1,0 +1,26 @@
+{
+	"extends": "eslint:recommended",
+	"rules": {
+		"no-unused-vars": ["error", {
+			"vars": "all",
+			"args": "after-used",
+			"ignoreRestSiblings": false,
+			"argsIgnorePattern": "undefined"
+		}]
+	},
+	"env": {
+        "browser": true
+    },
+	"globals": {
+		"window": false,
+		"angular": false,
+		"AppConfig": false,
+		"moment": false,
+		"Highcharts": false,
+		"Pace": false,
+		"jQuery": false,
+		"undefined": false,
+		"d3": false,
+		"require": false
+	}
+}

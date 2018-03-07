@@ -1,0 +1,8 @@
+<div id="AlertContainer" class="container-fluid" ng-if="$ctrl.alertsCount">
+	<div uib-alert ng-repeat="(id, alert) in $ctrl.alerts track by id"
+		ng-class="$ctrl.classAlert(alert.type)"
+		close="$ctrl.closeAlert(id)"
+		dismiss-on-timeout="{{ alert.ttl }}">
+		<span ng-bind-html="alert.msg"></span>
+	</div>
+</div>
