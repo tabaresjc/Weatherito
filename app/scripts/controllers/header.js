@@ -25,7 +25,8 @@
 		}
 
 		angular.extend($scope, {
-			lang: appConfig.language,
+			currentLanguage: appConfig.language,
+			languages: appConfig.languages,
 			displayName: appConfig.displayName,
 			defaultState: appConfig.defaultState,
 			currentParams: {

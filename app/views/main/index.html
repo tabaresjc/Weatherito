@@ -1,4 +1,4 @@
-<windy-widget></windy-widget>
+<!-- <windy-widget></windy-widget> -->
 <div class="container">
 	<div class="panel panel-default panel-weather">
 		<div class="panel-heading">
@@ -52,5 +52,12 @@
 				</td>
 			</tr>
 		</table>
+	</div>
+
+	<div class="forecast-container" ng-if="forecastData && forecastData.list">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="item in forecastData.list">
+			</li>
+		</ul>
 	</div>
 </div>

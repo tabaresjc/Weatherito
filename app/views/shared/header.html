@@ -19,14 +19,9 @@
 		<div id="NavBarMenu" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-left"></ul>
 			<ul class="nav navbar-nav navbar-right navbar-lang hidden-xs">
-				<li href="#" ng-class="{active: lang==='en'}">
-					<a ng-click="changeLanguage('en')">
-						<img src="/images/languages/en.svg" width="25" height="25">
-					</a>
-				</li>
-				<li href="#" ng-class="{active: lang==='es'}">
-					<a ng-click="changeLanguage('es')">
-						<img src="/images/languages/es.svg" width="25" height="25">
+				<li ng-class="{active: currentLanguage===language.code}" ng-repeat="language in languages">
+					<a href="#" ng-click="changeLanguage(language.code)">
+						<img ng-src="/images/languages/{{ language.code }}.svg" width="25" height="25">
 					</a>
 				</li>
 			</ul>
