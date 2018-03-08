@@ -3,20 +3,7 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function ApiBaseServiceError(type, response) {
-		var t = type,
-			r = response;
-
-		this.getType = function() {
-			return t;
-		};
-
-		this.getResponse = function() {
-			return r;
-		};
-	}
-
-	function ApiBaseService($state, $http, $q, $log) {
+	function ApiBaseService($state, $http, $q, $log, ErrorService) {
 
 		function Get(url, params, data) {
 			var defer = $q.defer();
@@ -45,7 +32,7 @@
 					response: response
 				});
 
-				defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
+				defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
 			}
 
 			$http(httpParams).then(onSucess, onError);
@@ -54,12 +41,11 @@
 		}
 
 		return {
-			Get: Get,
-			ApiBaseServiceError: ApiBaseServiceError
+			Get: Get
 		};
 	}
 
-	ApiBaseService.$inject = ['$state', '$http', '$q', '$log'];
+	ApiBaseService.$inject = ['$state', '$http', '$q', '$log', 'ErrorService'];
 
 	angular.module(appConfig.appName)
 		.factory('ApiBaseService', ApiBaseService);

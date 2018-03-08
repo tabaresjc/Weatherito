@@ -20,12 +20,9 @@
 	/**
 	 * setup the transition hooks of uirouter
 	 */
-	function start($rootScope, $state, $transitions, $log, UtilsService) {
+	function start($rootScope, $state, $transitions, $log) {
 		// inject the state into the application
 		$rootScope.$state = $state;
-
-		// inject the browser id
-		$rootScope.$browserId = UtilsService.getBrowserId();
 
 		// taken from ui-router module.
 		var rejectType = {
@@ -59,7 +56,7 @@
 		});
 	}
 
-	start.$inject = ['$rootScope', '$state', '$transitions', '$log', 'UtilsService'];
+	start.$inject = ['$rootScope', '$state', '$transitions', '$log'];
 
 	angular.module(appConfig.appName)
 		.config(configuration)

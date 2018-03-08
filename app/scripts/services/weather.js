@@ -3,9 +3,7 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function WeatherService($q, $cookies, ApiBaseService) {
-		var ApiBaseServiceError = ApiBaseService.ApiBaseServiceError;
-
+	function WeatherService($q, $cookies, ApiBaseService, ErrorService) {
 		function baseRequest(name, geoData) {
 			var defer = $q.defer();
 
@@ -25,12 +23,12 @@
 				if (status === 200) {
 					defer.resolve(response);
 				} else {
-					defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
+					defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
 				}
 			}
 
 			function onApiError(response) {
-				defer.reject(new ApiBaseServiceError('ERROR_API_ACCESS', response));
+				defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
 			}
 
 			ApiBaseService
@@ -50,7 +48,7 @@
 		}
 	}
 
-	WeatherService.$inject = ['$q', '$cookies', 'ApiBaseService'];
+	WeatherService.$inject = ['$q', '$cookies', 'ApiBaseService', 'ErrorService'];
 
 	angular.module(appConfig.appName)
 		.factory('WeatherService', WeatherService);
