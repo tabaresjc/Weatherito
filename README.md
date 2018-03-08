@@ -24,7 +24,7 @@ $ gulp -v
 
 ### Installing
 1. Clone this repository `$ git clone <path to repository>` and `$ cd` into it
-2. run `$ npm run install`
+2. run `$ npm run setup`
 
 ### Configuration
 
@@ -38,8 +38,8 @@ When building the project for testing mode save the file `resources/config-sampl
 {
 	"app_debug": "APP_DEBUG",
 	"app_name": "APP_NAME",
-	"api_url": "API_URL",
-	"display_name": "DISPLAY_NAME"
+	"display_name": "DISPLAY_NAME",
+  "open_weather_api_key": "OPEN_WEATHER_API_KEY"
 }
 ```
 
@@ -47,8 +47,8 @@ When building the project for testing mode save the file `resources/config-sampl
 | --------------------------- |-----------------------|
 | app_debug| set "1" to debug the application |
 | app_name| the name for the Angular module |
-| api_url | the url path to the api, it can be relative or include the scheme and port i.e. (http://localhost:8060/api/). This parameter is ignored for test environemnt |
 | display_name | Name to be shown as a title of the application |
+| open_weather_api_key | key provided by OpenWeatherMap (https://openweathermap.org/) |
 
 ### Tasks
 

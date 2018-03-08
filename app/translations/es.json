@@ -1,0 +1,14 @@
+{
+	"WEATHER_TITLE": "Pronósticos actuales del clima de tu ciudad",
+	"WEATHER_LOCATION_TITLE": "Clima en {{city}}, {{country}}",
+	"WEATHER_WIND_LBL": "Viento",
+	"WEATHER_PRESSURE_LBL": "Presión",
+	"WEATHER_HUMIDITY_LBL": "Humedad",
+	"WEATHER_SUNRISE_LBL": "Salida del sol",
+	"WEATHER_SUNSET_LBL": "Puesta del sol",
+	"UNITS": {
+		"TEMP": "°C",
+		"SPEED": "m/s",
+		"PRESSURE": "hPa"
+	}
+}

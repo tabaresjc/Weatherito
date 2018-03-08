@@ -7,9 +7,13 @@
 	 * controller for top page of retail site
 	 */
 	function controller($scope, weatherData, forecastData, geoData) {
+		var weatherInfo = weatherData.weather.shift();
 
 		// models
 		angular.extend($scope, {
+			weatherInfo: weatherInfo,
+			targetCity: weatherData.name,
+			targetCountry: weatherData.sys.country,
 			weatherData: weatherData,
 			geoData: geoData,
 			forecastData: forecastData

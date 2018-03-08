@@ -1,0 +1,16 @@
+{
+	"WEATHER_TITLE": "Current weather and forecasts in your city",
+	"WEATHER_LOCATION_TITLE": "Weather in {{city}}, {{country}}",
+	"WEATHER_WIND_LBL": "Wind",
+	"WEATHER_PRESSURE_LBL": "Pressure",
+	"WEATHER_HUMIDITY_LBL": "Humidity",
+	"WEATHER_SUNRISE_LBL": "Sunrise",
+	"WEATHER_SUNSET_LBL": "Sunset",
+	"UNITS": {
+		"TEMP": "°C",
+		"SPEED": "m/s",
+		"PRESSURE": "hPa"
+	}
+
+
+}

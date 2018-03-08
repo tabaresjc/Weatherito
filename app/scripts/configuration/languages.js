@@ -5,10 +5,11 @@
 
 	function configuration($translateProvider, tmhDynamicLocaleProvider) {
 
-		$translateProvider.translations('en', {});
-		$translateProvider.translations('es', {});
-
-		$translateProvider
+		// setup translation provider
+		$translateProvider.useStaticFilesLoader({
+				prefix: '/translations/',
+				suffix: '.json?t=' + (new Date()).getTime()
+			})
 			.preferredLanguage('en')
 			.useSanitizeValueStrategy(null);
 
@@ -20,11 +21,11 @@
 
 	function start($cookies, $translate, $log, tmhDynamicLocale) {
 		// set the language selected by user
-		var currentLanguage = $cookies.get(appConfig.cookies.language) || appConfig.language.default;
+		var currentLanguage = $cookies.get(appConfig.cookies.language) || 'en';
 
 		$log.info('Selected language: ', currentLanguage);
 
-		appConfig.language.current = currentLanguage.toLowerCase();
+		appConfig.language = currentLanguage.toLowerCase();
 		$translate.use(currentLanguage);
 
 		tmhDynamicLocale.set(currentLanguage);

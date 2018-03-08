@@ -1,3 +1,56 @@
+<windy-widget></windy-widget>
 <div class="container">
-
+	<div class="panel panel-default panel-weather">
+		<div class="panel-heading">
+			<h2 ng-bind-html="'WEATHER_TITLE' | translate"></h2>
+		</div>
+		<div class="panel-body">
+			<div class="weather-info">
+				<h3 ng-bind-html="'WEATHER_LOCATION_TITLE' | translate:{city:targetCity, country:targetCountry}"></h3>
+				<div class="details">
+					<img src="https://openweathermap.org/img/w/{{ weatherInfo.icon }}.png" alt="{{ weatherInfo.description }}">
+					<h3>
+						<span ng-bind-html="weatherData.main.temp"></span>
+						<span ng-bind-html="'UNITS.TEMP' | translate"></span>
+					</h3>
+				</div>
+				<p ng-bind-html="weatherInfo.description | capitalize"></p>
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td ng-bind-html="'WEATHER_WIND_LBL' | translate"></td>
+				<td>
+					<span ng-bind-html="weatherData.wind.speed"></span>
+					<span ng-bind-html="'UNITS.SPEED' | translate"></span>
+				</td>
+			</tr>
+			<tr>
+				<td ng-bind-html="'WEATHER_PRESSURE_LBL' | translate"></td>
+				<td>
+					<span ng-bind-html="weatherData.main.pressure"></span>
+					<span ng-bind-html="'UNITS.PRESSURE' | translate"></span>
+				</td>
+			</tr>
+			<tr>
+				<td ng-bind-html="'WEATHER_HUMIDITY_LBL' | translate"></td>
+				<td>
+					<span ng-bind-html="weatherData.main.humidity"></span>
+					<span>%</span>
+				</td>
+			</tr>
+			<tr>
+				<td ng-bind-html="'WEATHER_SUNRISE_LBL' | translate"></td>
+				<td>
+					<span ng-bind-html="weatherData.sys.sunrise | unixDateToTime"></span>
+				</td>
+			</tr>
+			<tr>
+				<td ng-bind-html="'WEATHER_SUNSET_LBL' | translate"></td>
+				<td>
+					<span ng-bind-html="weatherData.sys.sunset | unixDateToTime"></span>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

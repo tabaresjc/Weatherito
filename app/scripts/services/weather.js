@@ -15,7 +15,7 @@
 				lat: geoData.lat.toFixed(3),
 				lon: geoData.lon.toFixed(3),
 				appid: appConfig.openweather_api_key,
-				lang: appConfig.language.current,
+				lang: appConfig.language,
 				units: 'metric'
 			};
 

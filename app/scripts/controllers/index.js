@@ -5,7 +5,7 @@
 
 	function controller($scope) {
 		$scope.title = appConfig.displayName;
-		$scope.language = appConfig.language.current;
+		$scope.language = appConfig.language;
 	}
 
 	controller.$inject = ['$scope'];

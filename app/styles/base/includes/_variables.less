@@ -16,20 +16,11 @@
 
 //********************************************************************************************
 // colors
-@background-color: #333;
-@light-color: #eee;
-@dark-color: #111;
-@purple: #ee86f7;
-@red: #d9534f;
-@green: #449d44;
-@blue: #1f62b2;
+@app-background-color: #F0F3F3;
+@app-font-color: #565656;
 
 //********************************************************************************************
-// mixins
-.border-radius (@radius:5px) {
-	border-radius: @radius;
-}
-// Official Font Family
+// Official font Family
 .app-font
 {
 	font-family: 'Open Sans', sans-serif;
@@ -37,6 +28,18 @@
 .app-font-condensed
 {
 	font-family: 'Roboto Condensed', sans-serif;
+}
+
+// mixins
+.border-radius (@radius:5px) {
+	border-radius: @radius;
+}
+
+.h2-title {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	font-weight: bold;
 }
 
 .default-link {

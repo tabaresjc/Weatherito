@@ -14,11 +14,11 @@
 	 * 		the propertyName + 'En'
 	 */
 	function translateProp($rootScope) {
-		var defaultLanguage = appConfig.language.default,
-			currentLanguage = appConfig.language.current;
+		var defaultLanguage = 'en',
+			currentLanguage = appConfig.language;
 
 		$rootScope.$on('switch-lang', function(){
-			currentLanguage = appConfig.language.current;
+			currentLanguage = appConfig.language;
 		});
 
 		return function(obj, propertyName) {

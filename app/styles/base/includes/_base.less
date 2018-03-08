@@ -4,31 +4,20 @@ html {
 }
 
 body {
-	background-color: @background-color;
+	color: @app-font-color;
+	background: @app-background-color;
 }
 
-.text-nowrap {
-    white-space: nowrap;
-}
+.container {
+	@media (min-width: @screen-sm-min) {
+		width: @container-sm;
+	}
+	@media (min-width: @screen-md-min) {
+		width: 850px;
+	}
+	@media (min-width: @screen-lg-min) {
+		width: 850px;
+	}
 
-.btn:focus,
-.btn:active:focus,
-.btn.active:focus {
-  outline: 0;
-  outline: 5px auto @brand-primary;
-}
-
-#windyty {
-	position: absolute;
-	width: 100%;
-	/* Firefox */
-	height: ~"-moz-calc(100% - 50px)";
-	/* WebKit */
-	height: ~"-webkit-calc(100% - 50px)";
-	/* Opera */
-	height: ~"-o-calc(100% - 50px)";
-	/* Standard */
-	height: ~"calc(100% - 50px)";
-	left: 0;
-	top: 50px;
+	z-index: 10;
 }

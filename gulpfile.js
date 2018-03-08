@@ -23,7 +23,8 @@ plugins.assembleConfig = function(name, callback) {
 	var params = require(dataPath);
 
 	var replaceList = [
-		['%APP_VERSION%', pkgConfig.version]
+		['%APP_VERSION%', pkgConfig.version],
+		['%LANGUAGES%', JSON.stringify(pkgConfig.languages)]
 	];
 
 	for (var param in params) {
@@ -149,10 +150,11 @@ gulp.task('clean-after', function() {
 });
 
 gulp.task('copy-resources', function() {
-	var translations = [
-		'bower_components/angular-i18n/angular-locale_en.js',
-		'bower_components/angular-i18n/angular-locale_ja.js'
-	];
+	var translations = [];
+
+	pkgConfig.languages.forEach(function(lang) {
+		translations.push('bower_components/angular-i18n/angular-locale_'+lang.code+'.js')
+	});
 
 	gulp.src('bower_components/font-awesome/fonts/*.*')
 		.pipe(gulp.dest('dist/fonts/font-awesome/'));

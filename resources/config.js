@@ -11,10 +11,8 @@
 		ipapi_url: 'http://ip-api.com/json',
 		openweather_api_url: 'http://api.openweathermap.org/data/2.5/',
 		openweather_api_key: '%OPEN_WEATHER_API_KEY%',
-		language: {
-			current: 'en',
-			default: 'en'
-		},
+		language: 'en',
+		languages: %LANGUAGES%,
 		cookies: {
 			language: '%APP_NAME%_lang_setting',
 		}

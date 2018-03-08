@@ -1,6 +1,6 @@
 {
 	"app_debug": "APP_DEBUG",
 	"app_name": "APP_NAME",
-	"api_url": "API_URL",
-	"display_name": "DISPLAY_NAME"
+	"display_name": "DISPLAY_NAME",
+	"open_weather_api_key": "OPEN_WEATHER_API_KEY"
 }

@@ -7,7 +7,7 @@
 		var stateParams = $state.params;
 
 		function changeLanguage(key) {
-			if (appConfig.language.current === key) {
+			if (appConfig.language === key) {
 				return;
 			}
 
@@ -25,7 +25,7 @@
 		}
 
 		angular.extend($scope, {
-			lang: appConfig.language.current,
+			lang: appConfig.language,
 			displayName: appConfig.displayName,
 			defaultState: appConfig.defaultState,
 			currentParams: {
