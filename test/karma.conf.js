@@ -31,6 +31,9 @@ module.exports = function(config) {
 			'bower_components/angular-ui-select/dist/select.js',
 			'bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js',
 			'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+			'bower_components/moment/moment.js',
+			'bower_components/moment/locale/es.js',
+			'bower_components/moment/locale/fr.js',
 			// endbower
 			'app/scripts/config.js',
 			'app/scripts/app.js',

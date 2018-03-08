@@ -24,9 +24,10 @@
 		var currentLanguage = $cookies.get(appConfig.cookies.language) || 'en';
 
 		$log.info('Selected language: ', currentLanguage);
-
 		appConfig.language = currentLanguage.toLowerCase();
+
 		$translate.use(currentLanguage);
+		root.moment.locale(currentLanguage);
 
 		tmhDynamicLocale.set(currentLanguage);
 	}
@@ -35,6 +36,9 @@
 
 	angular.module(appConfig.appName)
 		.config(configuration)
-		.run(start);
+		.run(start)
+
+		// load moment as an internal library
+		.constant('moment', root.moment);
 
 }(this));

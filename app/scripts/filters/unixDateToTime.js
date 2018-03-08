@@ -3,27 +3,32 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function unixDateToTime() {
+	function unixDateToTime(m) {
 		return function(input) {
 			if (!input) {
 				return '';
 			}
 
-			var date = new Date(input * 1000);
-
-			// Hours part from the timestamp
-			var hours = "0" + date.getHours();
-			// Minutes part from the timestamp
-			var minutes = "0" + date.getMinutes();
-
-			// Will display time in 10:30:23 format
-			return hours.substr(-2) + ':' + minutes.substr(-2);
+			return m.unix(input).format('LTS');
 		};
 	}
 
-	unixDateToTime.$inject = [];
+	unixDateToTime.$inject = ['moment'];
+
+	function unixDateToDate(m) {
+		return function(input) {
+			if (!input) {
+				return '';
+			}
+
+			return m.unix(input).format('LL');
+		};
+	}
+
+	unixDateToDate.$inject = ['moment'];
 
 	angular.module(appConfig.appName)
-		.filter('unixDateToTime', unixDateToTime);
+		.filter('unixDateToTime', unixDateToTime)
+		.filter('unixDateToDate', unixDateToDate);
 
 }(this));

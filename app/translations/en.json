@@ -1,6 +1,7 @@
 {
 	"WEATHER_TITLE": "Current weather and forecasts in your city",
 	"WEATHER_LOCATION_TITLE": "Weather in {{city}}, {{country}}",
+	"WEATHER_FORECAST_TITLE": "5 day weather forecast",
 	"WEATHER_WIND_LBL": "Wind",
 	"WEATHER_PRESSURE_LBL": "Pressure",
 	"WEATHER_HUMIDITY_LBL": "Humidity",
@@ -8,9 +9,12 @@
 	"WEATHER_SUNSET_LBL": "Sunset",
 	"UNITS": {
 		"TEMP": "°C",
+		"TEMP_VALUE": "{{ value }} °C",
 		"SPEED": "m/s",
-		"PRESSURE": "hPa"
+		"SPEED_VALUE": "{{ value }} m/s",
+		"PRESSURE": "hPa",
+		"PRESSURE_VALUE": "{{ value }} hPa",
+		"HUMIDITY": "%",
+		"HUMIDITY_VALUE": "{{ value }}%"
 	}
-
-
 }

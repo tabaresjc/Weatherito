@@ -6,24 +6,34 @@
 	/*
 	 * controller for top page of retail site
 	 */
-	function controller($scope, weatherData, forecastData, geoData) {
-		var weatherInfo = weatherData.weather.shift();
+	function controller($scope, m, weatherData, forecastData) {
+		var forecastList = [];
+		var previousDate = '';
+		forecastData.list.forEach(function(item) {
+			var currentDate = m.unix(item.dt).format('DDMMYYYY');
+
+			if (currentDate !== previousDate) {
+				item.weather = item.weather.shift();
+				forecastList.push(item);
+				previousDate = currentDate;
+			}
+		});
 
 		// models
 		angular.extend($scope, {
-			weatherInfo: weatherInfo,
+			weatherInfo: weatherData.weather.shift(),
 			targetCity: weatherData.name,
 			targetCountry: weatherData.sys.country,
 			weatherData: weatherData,
-			geoData: geoData,
-			forecastData: forecastData
+			forecastData: forecastData,
+			forecastList: forecastList
 		});
 
 		// methods
 		angular.extend($scope, {});
 	}
 
-	controller.$inject = ['$scope', 'weatherData', 'forecastData', 'geoData'];
+	controller.$inject = ['$scope', 'moment', 'weatherData', 'forecastData'];
 
 	controller.resolve = {
 		geoData: ['GeoLocationService', function(GeoLocationService) {

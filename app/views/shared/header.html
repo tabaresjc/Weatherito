@@ -1,27 +1,31 @@
-<nav id="header" class="navbar navbar-default navbar-static-top">
+<nav id="header" class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavBarMenu" aria-expanded="false">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#NavBarMenu" aria-expanded="false">
 		        <span class="sr-only">Toggle navigation</span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
-	      	</button> -->
+	      	</button>
 			<a class="navbar-brand img" href="/">
 				<img alt="{{displayName}}" src="/images/logo.png">
 			</a>
-
 			<a class="navbar-brand" href="/" ng-bind-html="displayName">
 			</a>
 		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div id="NavBarMenu" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-left"></ul>
-			<ul class="nav navbar-nav navbar-right navbar-lang hidden-xs">
-				<li ng-class="{active: currentLanguage===language.code}" ng-repeat="language in languages">
+			<ul class="nav navbar-nav navbar-right navbar-lang">
+				<li class="hidden-xs" ng-class="{active: currentLanguage===language.code}" ng-repeat="language in languages">
 					<a href="#" ng-click="changeLanguage(language.code)">
 						<img ng-src="/images/languages/{{ language.code }}.svg" width="25" height="25">
+					</a>
+				</li>
+
+				<li class="visible-xs-block" ng-class="{active: currentLanguage===language.code}" ng-repeat="language in languages">
+					<a href="#" ng-click="changeLanguage(language.code)">
+						<span ng-bind-html="language.name"></span>
 					</a>
 				</li>
 			</ul>

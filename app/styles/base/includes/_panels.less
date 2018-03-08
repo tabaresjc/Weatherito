@@ -32,4 +32,58 @@
 			}
 		}
 	}
+
+	.forecast-card {
+		margin: 0;
+
+		span {
+			padding: 1px 0;
+			font-size: 14px;
+			line-height: 1 !important;
+			box-sizing: border-box;
+		}
+
+		span.label {
+			font-size: 14px;
+			line-height: 1 !important;
+			padding: 3px 6px;
+			width: 90px;
+			display: inline-block;
+			height: 21px;
+		}
+	}
+
+	.forecast-card + .forecast-card {
+		margin-top: 3px;
+	}
+
+	@media @size-xs {
+		.panel-heading {
+			h2 {
+				font-size: 1.1em;
+			}
+		}
+
+		.panel-body {
+			.weather-info {
+				h3 {
+					font-size: 1.0em;
+				}
+
+				.details {
+					h3 {
+						font-size: 1.5em;
+					}
+				}
+			}
+		}
+
+		.list-group-item {
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+
+		}
+	}
 }
