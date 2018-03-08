@@ -10,7 +10,7 @@
 				countries: '=',
 			},
 			templateUrl: 'views/directives/city-search.html',
-			link: function(scope, element, attr) {
+			link: function(scope) {
 				scope.selectedCountry = null;
 				var countryList = [];
 

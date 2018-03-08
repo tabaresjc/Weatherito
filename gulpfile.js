@@ -156,14 +156,23 @@ gulp.task('copy-resources', function() {
 		translations.push('bower_components/angular-i18n/angular-locale_'+lang.code+'.js')
 	});
 
-	gulp.src('bower_components/font-awesome/fonts/*.*')
-		.pipe(gulp.dest('dist/fonts/font-awesome/'));
+	gulp.src('app/data/**/*')
+		.pipe(gulp.dest('dist/data/'));
 
-	gulp.src(translations)
-		.pipe(gulp.dest('dist/data/translations/'));
+	gulp.src('app/translations/**/*')
+		.pipe(gulp.dest('dist/data/'));
 
 	gulp.src('app/images/**/*')
 		.pipe(gulp.dest('dist/images/'));
+
+	gulp.src('bower_components/font-awesome/fonts/*.*')
+		.pipe(gulp.dest('dist/fonts/font-awesome/'));
+
+	gulp.src('node_modules/open-weather-icons/dist/fonts/*.*')
+		.pipe(gulp.dest('dist/fonts/owi/'));
+
+	gulp.src(translations)
+		.pipe(gulp.dest('dist/data/translations/'));
 
 	gulp.src('resources/favicons/**/*')
 		.pipe(gulp.dest('dist/favicons/'));
@@ -230,6 +239,7 @@ gulp.task('server', function(callback) {
 				connect().use('/data/translations/', plugins.serveStatic('./bower_components/angular-i18n')),
 				connect().use('/scripts/templates.js', plugins.serveStatic('./resources/templates.js')),
 				connect().use('/fonts/font-awesome/', plugins.serveStatic('./bower_components/font-awesome/fonts/')),
+				connect().use('/fonts/owi/', plugins.serveStatic('./node_modules/open-weather-icons/dist/fonts/')),
 				connect().use('/favicons/', plugins.serveStatic('./resources/favicons/')),
 			];
 		}

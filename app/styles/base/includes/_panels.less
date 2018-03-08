@@ -20,6 +20,11 @@
 				h3 {
 					font-size: 3em;
 				}
+
+				i.owi {
+					font-size: 128px;
+					margin: 10px 0;
+				}
 			}
 		}
 	}
@@ -33,32 +38,44 @@
 		}
 	}
 
-	.forecast-card {
-		margin: 0;
-
-		span {
-			padding: 1px 0;
-			font-size: 14px;
-			line-height: 1 !important;
-			box-sizing: border-box;
+	.forecast-list {
+		i.owi {
+			width: 80px;
+			height: 80px;
+			font-size: 80px;
+			display: block;
+			margin: 0 auto;
 		}
 
-		span.label {
-			font-size: 14px;
-			line-height: 1 !important;
-			padding: 3px 6px;
-			width: 90px;
-			display: inline-block;
-			height: 21px;
+		.forecast-card {
+			margin: 0;
+
+			span {
+				padding: 1px 0;
+				font-size: 14px;
+				line-height: 1 !important;
+				box-sizing: border-box;
+			}
+
+			span.label {
+				font-size: 14px;
+				line-height: 1 !important;
+				padding: 3px 6px;
+				width: 90px;
+				display: inline-block;
+				height: 21px;
+			}
+
+			span.label-txt {
+				display: inline-block;
+				width: 100px;
+				text-align: left;
+			}
 		}
-	}
 
-	.forecast-card + .forecast-card {
-		margin-top: 3px;
-	}
-
-	.ui-select-container {
-		z-index: 9999 !important;
+		.forecast-card + .forecast-card {
+			margin-top: 3px;
+		}
 	}
 
 	@media @size-xs {
@@ -78,15 +95,15 @@
 					h3 {
 						font-size: 1.5em;
 					}
+
+					i.owi {
+						font-size: 128px;
+					}
 				}
 			}
 		}
 
-		.list-group-item {
-			img {
-				display: block;
-				margin: 0 auto;
-			}
+		.forecast-list {
 
 		}
 	}
