@@ -1,0 +1,21 @@
+<div class="panel panel-default panel-weather clearfix">
+	<div class="panel-body">
+		<div class="weather-info">
+			<div class="input-group clearfix">
+				<ui-select ng-model="selectedCountry" theme="bootstrap">
+					<ui-select-match allow-clear="true" placeholder="{{ 'SELECT_COUNTRY_LBL' | translate }}">
+						<span ng-bind="$select.selected.name"></span>
+					</ui-select-match>
+					<ui-select-choices repeat="item in countryList track by $index">
+						<span ng-bind="item.name"></span>
+					</ui-select-choices>
+				</ui-select>
+				<span class="input-group-btn">
+					<button type="button" ng-click="onFundChanged('')" class="btn btn-default">
+						<span class="fa fa-times"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

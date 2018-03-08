@@ -6,8 +6,9 @@
 	/*
 	 * controller for top page of retail site
 	 */
-	function controller($scope, m, weatherData, forecastData) {
+	function controller($scope, m, weatherData, forecastData, countriesData) {
 		var forecastList = [];
+
 		var previousDate = '';
 		forecastData.list.forEach(function(item) {
 			var currentDate = m.unix(item.dt).format('DDMMYYYY');
@@ -26,14 +27,15 @@
 			targetCountry: weatherData.sys.country,
 			weatherData: weatherData,
 			forecastData: forecastData,
-			forecastList: forecastList
+			forecastList: forecastList,
+			countriesData: countriesData
 		});
 
 		// methods
 		angular.extend($scope, {});
 	}
 
-	controller.$inject = ['$scope', 'moment', 'weatherData', 'forecastData'];
+	controller.$inject = ['$scope', 'moment', 'weatherData', 'forecastData', 'countriesData'];
 
 	controller.resolve = {
 		geoData: ['GeoLocationService', function(GeoLocationService) {
@@ -44,6 +46,9 @@
 		}],
 		forecastData: ['WeatherService', 'geoData', function(WeatherService, geoData) {
 			return WeatherService.forecast(geoData);
+		}],
+		countriesData: ['CountriesService', function(CountriesService) {
+			return CountriesService();
 		}]
 	};
 

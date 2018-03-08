@@ -16,5 +16,6 @@
 		"PRESSURE_VALUE": "{{ value }} hPa",
 		"HUMIDITY": "%",
 		"HUMIDITY_VALUE": "{{ value }}%"
-	}
+	},
+	"SELECT_COUNTRY_LBL": "Seleccione el país"
 }

@@ -3,7 +3,7 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function WeatherService($q, $cookies, ApiBaseService, ErrorService) {
+	function WeatherService($q, ApiBaseService, ErrorService) {
 		function baseRequest(name, geoData) {
 			var defer = $q.defer();
 
@@ -48,7 +48,7 @@
 		}
 	}
 
-	WeatherService.$inject = ['$q', '$cookies', 'ApiBaseService', 'ErrorService'];
+	WeatherService.$inject = ['$q', 'ApiBaseService', 'ErrorService'];
 
 	angular.module(appConfig.appName)
 		.factory('WeatherService', WeatherService);
