@@ -3,7 +3,7 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function GeoLocationService($q, ApiBaseService) {
+	function GeoLocationService($q, ApiBaseService, ErrorService) {
 		return function() {
 			var defer = $q.defer();
 
@@ -16,7 +16,7 @@
 				});
 			}
 
-			function onApiError() {
+			function onApiError(response) {
 				defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
 			}
 

@@ -3,7 +3,7 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function ApiBaseService($state, $http, $q, $log, ErrorService) {
+	function ApiBaseService($state, $http, $q, $log) {
 
 		function Get(url, params, data) {
 			var defer = $q.defer();
@@ -32,7 +32,7 @@
 					response: response
 				});
 
-				defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
+				defer.reject(response.data);
 			}
 
 			$http(httpParams).then(onSucess, onError);
@@ -45,7 +45,7 @@
 		};
 	}
 
-	ApiBaseService.$inject = ['$state', '$http', '$q', '$log', 'ErrorService'];
+	ApiBaseService.$inject = ['$state', '$http', '$q', '$log'];
 
 	angular.module(appConfig.appName)
 		.factory('ApiBaseService', ApiBaseService);

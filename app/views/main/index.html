@@ -1,89 +1,92 @@
 <windy-widget></windy-widget>
+<city-search data-countries="countriesData"></city-search>
 <div class="container">
-	<!-- TODO: search by country and city  -->
-	<!-- <city-search data-countries="countriesData"></city-search> -->
-	<div class="panel panel-default panel-weather">
-		<div class="panel-heading">
-			<h2 ng-bind-html="'WEATHER_TITLE' | translate"></h2>
-		</div>
-		<div class="panel-body">
-			<div class="weather-info">
-				<h3 ng-bind-html="'WEATHER_LOCATION_TITLE' | translate:{city:targetCity, country:targetCountry}"></h3>
-				<div class="details">
-					<i class="owi owi-{{ weatherInfo.icon }}"></i>
-					<h3>
-						<span ng-bind-html="weatherData.main.temp"></span>
-						<span ng-bind-html="'UNITS.TEMP' | translate"></span>
-					</h3>
+	<div class="row">
+		<div class="col-sm-12 col-xs-12">
+			<div class="panel panel-default panel-weather">
+				<div class="panel-heading">
+					<h2 ng-bind-html="'WEATHER_TITLE' | translate"></h2>
 				</div>
-				<p ng-bind-html="weatherInfo.description | capitalize"></p>
+				<div class="panel-body">
+					<div class="weather-info">
+						<h3 ng-bind-html="'WEATHER_LOCATION_TITLE' | translate:{city:targetCity, country:targetCountry}"></h3>
+						<div class="details">
+							<i class="owi owi-{{ weatherInfo.icon }}"></i>
+							<h3>
+								<span ng-bind-html="weatherData.main.temp"></span>
+								<span ng-bind-html="'UNITS.TEMP' | translate"></span>
+							</h3>
+						</div>
+						<p ng-bind-html="weatherInfo.description | capitalize"></p>
+					</div>
+				</div>
+				<table class="table table-striped table-bordered">
+					<tr>
+						<td ng-bind-html="'WEATHER_WIND_LBL' | translate"></td>
+						<td>
+							<span ng-bind-html="'UNITS.SPEED_VALUE' | translate:{value:weatherData.wind.speed}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td ng-bind-html="'WEATHER_PRESSURE_LBL' | translate"></td>
+						<td>
+							<span ng-bind-html="'UNITS.PRESSURE_VALUE' | translate:{value:weatherData.main.pressure}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td ng-bind-html="'WEATHER_HUMIDITY_LBL' | translate"></td>
+						<td>
+							<span ng-bind-html="'UNITS.HUMIDITY_VALUE' | translate:{value:weatherData.main.humidity}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td ng-bind-html="'WEATHER_SUNRISE_LBL' | translate"></td>
+						<td>
+							<span ng-bind-html="weatherData.sys.sunrise | unixDateToTime"></span>
+						</td>
+					</tr>
+					<tr>
+						<td ng-bind-html="'WEATHER_SUNSET_LBL' | translate"></td>
+						<td>
+							<span ng-bind-html="weatherData.sys.sunset | unixDateToTime"></span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="panel panel-default panel-weather" ng-if="forecastData && forecastData.list">
+				<div class="panel-heading">
+					<h2 ng-bind-html="'WEATHER_FORECAST_TITLE' | translate"></h2>
+				</div>
+				<ul class="list-group forecast-list">
+					<li class="list-group-item" ng-repeat="item in forecastList">
+						<div class="row">
+							<div class="item-pict col-md-2 col-sm-2 col-xs-12">
+								<i class="owi owi-{{ item.weather.icon }}"></i>
+							</div>
+							<div class="item-desc col-md-10 col-sm-10 col-xs-12">
+								<p class="forecast-card">
+									<strong ng-bind-html="item.dt | unixDateToDate"></strong>
+								</p>
+								<p class="forecast-card">
+									<span class="label label-primary" ng-bind-html="'UNITS.TEMP_VALUE' | translate:{value:item.main.temp_min}"></span>
+									<span class="label label-warning" ng-bind-html="'UNITS.TEMP_VALUE' | translate:{value:item.main.temp_max}"></span>
+									<span ng-bind-html="item.weather.description | capitalize"></span>
+								</p>
+								<p class="forecast-card">
+									<span class="label label-default" ng-bind-html="'WEATHER_WIND_LBL' | translate"></span>
+									<span class="label-txt" ng-bind-html="'UNITS.SPEED_VALUE' | translate:{value:item.wind.speed}"></span>
+
+									<span class="label label-default" ng-bind-html="'WEATHER_PRESSURE_LBL' | translate"></span>
+									<span class="label-txt" ng-bind-html="'UNITS.PRESSURE_VALUE' | translate:{value:item.main.pressure}"></span>
+
+									<span class="label label-default" ng-bind-html="'WEATHER_HUMIDITY_LBL' | translate"></span>
+									<span class="label-txt" ng-bind-html="'UNITS.HUMIDITY_VALUE' | translate:{value:item.main.humidity}"></span>
+								</p>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
-		<table class="table table-striped table-bordered">
-			<tr>
-				<td ng-bind-html="'WEATHER_WIND_LBL' | translate"></td>
-				<td>
-					<span ng-bind-html="'UNITS.SPEED_VALUE' | translate:{value:weatherData.wind.speed}"></span>
-				</td>
-			</tr>
-			<tr>
-				<td ng-bind-html="'WEATHER_PRESSURE_LBL' | translate"></td>
-				<td>
-					<span ng-bind-html="'UNITS.PRESSURE_VALUE' | translate:{value:weatherData.main.pressure}"></span>
-				</td>
-			</tr>
-			<tr>
-				<td ng-bind-html="'WEATHER_HUMIDITY_LBL' | translate"></td>
-				<td>
-					<span ng-bind-html="'UNITS.HUMIDITY_VALUE' | translate:{value:weatherData.main.humidity}"></span>
-				</td>
-			</tr>
-			<tr>
-				<td ng-bind-html="'WEATHER_SUNRISE_LBL' | translate"></td>
-				<td>
-					<span ng-bind-html="weatherData.sys.sunrise | unixDateToTime"></span>
-				</td>
-			</tr>
-			<tr>
-				<td ng-bind-html="'WEATHER_SUNSET_LBL' | translate"></td>
-				<td>
-					<span ng-bind-html="weatherData.sys.sunset | unixDateToTime"></span>
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div class="panel panel-default panel-weather" ng-if="forecastData && forecastData.list">
-		<div class="panel-heading">
-			<h2 ng-bind-html="'WEATHER_FORECAST_TITLE' | translate"></h2>
-		</div>
-		<ul class="list-group forecast-list">
-			<li class="list-group-item" ng-repeat="item in forecastList">
-				<div class="row">
-					<div class="item-pict col-md-2 col-sm-2 col-xs-12">
-						<i class="owi owi-{{ item.weather.icon }}"></i>
-					</div>
-					<div class="item-desc col-md-10 col-sm-10 col-xs-12">
-						<p class="forecast-card">
-							<strong ng-bind-html="item.dt | unixDateToDate"></strong>
-						</p>
-						<p class="forecast-card">
-							<span class="label label-primary" ng-bind-html="'UNITS.TEMP_VALUE' | translate:{value:item.main.temp_min}"></span>
-							<span class="label label-warning" ng-bind-html="'UNITS.TEMP_VALUE' | translate:{value:item.main.temp_max}"></span>
-							<span ng-bind-html="item.weather.description | capitalize"></span>
-						</p>
-						<p class="forecast-card">
-							<span class="label label-default" ng-bind-html="'WEATHER_WIND_LBL' | translate"></span>
-							<span class="label-txt" ng-bind-html="'UNITS.SPEED_VALUE' | translate:{value:item.wind.speed}"></span>
-
-							<span class="label label-default" ng-bind-html="'WEATHER_PRESSURE_LBL' | translate"></span>
-							<span class="label-txt" ng-bind-html="'UNITS.PRESSURE_VALUE' | translate:{value:item.main.pressure}"></span>
-
-							<span class="label label-default" ng-bind-html="'WEATHER_HUMIDITY_LBL' | translate"></span>
-							<span class="label-txt" ng-bind-html="'UNITS.HUMIDITY_VALUE' | translate:{value:item.main.humidity}"></span>
-						</p>
-					</div>
-				</div>
-			</li>
-		</ul>
 	</div>
 </div>

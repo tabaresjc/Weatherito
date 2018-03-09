@@ -1,20 +1,32 @@
-<div class="panel panel-default panel-weather clearfix">
-	<div class="panel-body">
-		<div class="weather-info">
+<div class="container panel-search">
+	<div class="row">
+		<div class="country-group col-sm-offset-2 col-sm-4 col-xs-12">
 			<div class="input-group clearfix">
-				<ui-select ng-model="selectedCountry" theme="bootstrap">
-					<ui-select-match allow-clear="true" placeholder="{{ 'SELECT_COUNTRY_LBL' | translate }}">
-						<span ng-bind="$select.selected.name"></span>
-					</ui-select-match>
-					<ui-select-choices repeat="item in countryList track by $index">
-						<span ng-bind="item.name"></span>
-					</ui-select-choices>
-				</ui-select>
+				<input type="text"
+					placeholder="{{ 'SEARCH_COUNTRY_NAME_LBL' | translate }}"
+					ng-model="selectedCountry"
+					uib-typeahead="country as country.name for country in (countries | filterCountries:$viewValue)"
+					class="form-control">
 				<span class="input-group-btn">
-					<button type="button" ng-click="onFundChanged('')" class="btn btn-default">
+					<button type="button" class="btn btn-default" ng-click="selectedCountry = null">
 						<span class="fa fa-times"></span>
 					</button>
 				</span>
+			</div>
+		</div>
+		<div class="city-group col-sm-4 col-xs-12">
+			<div class="input-group">
+				<input type="text"
+					placeholder="{{ 'SEARCH_CITY_NAME_LBL' | translate }}"
+					ng-model="selectedCity"
+					class="form-control" >
+				<span class="input-group-btn">
+			        <button class="btn btn-primary" type="button"
+						ng-disabled="!selectedCountry || !selectedCountry.code"
+						ng-click="onSearch()">
+						<span class="fa fa-search"></span>
+					</button>
+			    </span>
 			</div>
 		</div>
 	</div>

@@ -160,7 +160,7 @@ gulp.task('copy-resources', function() {
 		.pipe(gulp.dest('dist/data/'));
 
 	gulp.src('app/translations/**/*')
-		.pipe(gulp.dest('dist/data/'));
+		.pipe(gulp.dest('dist/translations/'));
 
 	gulp.src('app/images/**/*')
 		.pipe(gulp.dest('dist/images/'));

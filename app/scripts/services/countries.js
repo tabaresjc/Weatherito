@@ -14,7 +14,14 @@
 			};
 
 			function onApiSuccess(response) {
-				defer.resolve(response);
+				// parse the info returned by the api
+				var countries = [];
+
+				angular.forEach(response, function(value, key) {
+					this.push({name:value, code: key});
+				}, countries);
+
+				defer.resolve(countries);
 			}
 
 			function onApiError(response) {

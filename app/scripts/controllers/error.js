@@ -21,7 +21,7 @@
 			});
 		}
 
-		// breakdown the different types of error that might arise on the app
+		// breakdown the different types of error that might arise in the app
 		if (errorInfo.error) {
 			var error = errorInfo.error,
 				errorDetail = errorInfo.error.detail;

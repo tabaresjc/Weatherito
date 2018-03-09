@@ -3,7 +3,7 @@
 
 	var appConfig = root.AppConfig || {};
 
-	function citySearch() {
+	function citySearch($state) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -11,22 +11,34 @@
 			},
 			templateUrl: 'views/directives/city-search.html',
 			link: function(scope) {
-				scope.selectedCountry = null;
-				var countryList = [];
+				function onSearch() {
+					var params = {
+						city: scope.selectedCity,
+						country: scope.selectedCountry.code,
+					};
 
-				angular.forEach(scope.countries, function(value, key) {
-					this.push({name:value, code:key});
-				}, countryList);
+					$state.transitionTo('main.city', params, {
+						location: true,
+						inherit: false,
+						reload: true
+					});
+				}
 
+				// models
 				angular.extend(scope, {
 					selectedCountry: '',
-					countryList: countryList
+					selectedCity: ''
+				});
+
+				// methods
+				angular.extend(scope, {
+					onSearch: onSearch
 				});
 			}
 		};
 	}
 
-	citySearch.$inject = [];
+	citySearch.$inject = ['$state'];
 
 	angular.module(appConfig.appName)
 		.directive('citySearch', citySearch);

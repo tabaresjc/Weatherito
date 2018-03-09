@@ -6,7 +6,7 @@
 	/*
 	 * controller for top page of retail site
 	 */
-	function controller($scope, m, weatherData, forecastData, countriesData) {
+	function controller($scope, $state, m, weatherData, forecastData, countriesData) {
 		var forecastList = [];
 		var previousDate = '';
 
@@ -35,14 +35,22 @@
 		angular.extend($scope, {});
 	}
 
-	controller.$inject = ['$scope', 'moment', 'weatherData', 'forecastData', 'countriesData'];
+	controller.$inject = ['$scope', '$state', 'moment', 'weatherData', 'forecastData', 'countriesData'];
 
 	controller.resolve = {
-		weatherData: ['WeatherService', 'geoData', function(WeatherService, geoData) {
-			return WeatherService.weather(geoData);
+		locationData: ['$transition$', function($transition$) {
+			var transitionParams = $transition$.params();
+
+			return {
+				city: transitionParams.city,
+				country: transitionParams.country,
+			};
 		}],
-		forecastData: ['WeatherService', 'geoData', 'weatherData', function(WeatherService, geoData) {
-			return WeatherService.forecast(geoData);
+		weatherData: ['WeatherService', 'locationData', function(WeatherService, locationData) {
+			return WeatherService.weather(locationData);
+		}],
+		forecastData: ['WeatherService', 'locationData', 'weatherData', function(WeatherService, locationData) {
+			return WeatherService.forecast(locationData);
 		}]
 	};
 
@@ -50,13 +58,13 @@
 	 * Setup the routing for this page
 	 */
 	function config($stateProvider) {
-		$stateProvider.state('main.welcome', {
-			url: '/',
+		$stateProvider.state('main.city', {
+			url: '/city?city&country',
 			resolve: controller.resolve,
 			views: {
 				'content@': {
 					templateUrl: 'views/main/index.html',
-					controller: 'WelcomeCtrl'
+					controller: 'CityCtrl'
 				}
 			}
 		});
@@ -66,6 +74,6 @@
 
 	angular.module(appConfig.appName)
 		.config(config)
-		.controller('WelcomeCtrl', controller);
+		.controller('CityCtrl', controller);
 
 }(this));

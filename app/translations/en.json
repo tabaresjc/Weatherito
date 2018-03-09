@@ -17,5 +17,6 @@
 		"HUMIDITY": "%",
 		"HUMIDITY_VALUE": "{{ value }}%"
 	},
-	"SELECT_COUNTRY_LBL": "Select country"
+	"SEARCH_COUNTRY_NAME_LBL": "Select the country...",
+	"SEARCH_CITY_NAME_LBL": "Insert the city name"
 }

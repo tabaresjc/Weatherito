@@ -11,7 +11,6 @@
 		'ngCookies',
 		'ui.router',
 		'ui.bootstrap',
-		'ui.select',
 		'pascalprecht.translate',
 		'tmh.dynamicLocale'
 	];

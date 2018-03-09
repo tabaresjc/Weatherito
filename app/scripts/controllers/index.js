@@ -11,7 +11,12 @@
 	controller.$inject = ['$scope'];
 
 	controller.resolve = {
-
+		geoData: ['GeoLocationService', function(GeoLocationService) {
+			return GeoLocationService();
+		}],
+		countriesData: ['CountriesService', function(CountriesService) {
+			return CountriesService();
+		}]
 	};
 
 	function config($stateProvider) {

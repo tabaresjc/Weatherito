@@ -28,7 +28,6 @@ module.exports = function(config) {
 			'bower_components/angular-translate/angular-translate.js',
 			'bower_components/angular-ui-router/release/angular-ui-router.js',
 			'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-			'bower_components/angular-ui-select/dist/select.js',
 			'bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js',
 			'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
 			'bower_components/moment/moment.js',

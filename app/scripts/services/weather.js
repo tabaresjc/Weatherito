@@ -4,21 +4,32 @@
 	var appConfig = root.AppConfig || {};
 
 	function WeatherService($q, ApiBaseService, ErrorService) {
-		function baseRequest(name, geoData) {
+		function baseRequest(name, data) {
 			var defer = $q.defer();
 
 			var url = appConfig.openweather_api_url + name;
 
 			var params = {
-				lat: geoData.lat.toFixed(3),
-				lon: geoData.lon.toFixed(3),
 				appid: appConfig.openweather_api_key,
 				lang: appConfig.language,
 				units: 'metric'
 			};
 
+			if (typeof(data.lat) === 'number' && typeof(data.lon) === 'number') {
+				angular.extend(params, {
+					lat: data.lat.toFixed(3),
+					lon: data.lon.toFixed(3)
+				});
+			} else if (typeof(data.city) === 'string' && typeof(data.country) === 'string') {
+				angular.extend(params, {
+					q: data.city + ',' + data.country
+				});
+			} else {
+				defer.reject(new ErrorService.ApiError('ERROR_WRONG_PARAMS'));
+			}
+
 			function onApiSuccess(response) {
-				var status = parseInt(response.cod || '0')
+				var status = parseInt(response.cod || '0');
 
 				if (status === 200) {
 					defer.resolve(response);
@@ -28,7 +39,13 @@
 			}
 
 			function onApiError(response) {
-				defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
+				var status = parseInt(response.cod || '0');
+
+				if (status && typeof(response.message) === 'string') {
+					defer.reject(new ErrorService.ApiError(response.message, response));
+				} else {
+					defer.reject(new ErrorService.ApiError('ERROR_API_ACCESS', response));
+				}
 			}
 
 			ApiBaseService
