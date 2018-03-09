@@ -2,6 +2,8 @@
 
 Single Page application (SPA) based on Angular JS 1.x for a simple yet fun weather application.
 
+![alt text][screen1]
+
 ## Getting Started
 
 ### Prerequisites
@@ -39,7 +41,7 @@ When building the project for testing mode save the file `resources/config-sampl
 	"app_debug": "APP_DEBUG",
 	"app_name": "APP_NAME",
 	"display_name": "DISPLAY_NAME",
-  "open_weather_api_key": "OPEN_WEATHER_API_KEY"
+  	"open_weather_api_key": "OPEN_WEATHER_API_KEY"
 }
 ```
 
@@ -100,3 +102,5 @@ $ npm run test
 - `bower.json` : Configuration file for **Bower**, with list of dependencies required by the web application
 - `gulpfile.js` : Define the **Gulp** tasks
 - `package.json` : Contains several entries that will define the list of dependencies, the tasks of the project, define the browsers supported by this application.
+
+[screen1]: /resources/screens/screen1.jpg?raw=true "Weatherito"

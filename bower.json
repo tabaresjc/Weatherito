@@ -30,8 +30,7 @@
 		"moment": {
 			"main": [
 				"moment.js",
-				"locale/es.js",
-				"locale/fr.js"
+				"locale/es.js"
 			]
 		},
 		"font-awesome": {
